@@ -14,7 +14,7 @@ def main():
     import pandas as pd
 
     # Enter spreadsheet name E.g. "Multiplication", "Invert" or "Addition"
-    instructions = "Addition"
+    instructions = "Multiplication"
     df = pd.read_excel('instructions.xlsx', header=0,
                     sheet_name=instructions).astype("string")
 
@@ -32,12 +32,17 @@ def run_machine(df, tape):
         tape[index] = current_row.Symbol_new.values[0]
         move = current_row.Move.values[0]
         if move == "r":
+            if index == len(tape) - 1:
+                tape.append("#")
             index += 1
         elif move == "l":
+            if index == 0:
+                tape.insert(0, "#")
             index -= 1
         elif move == "stop":
             run = False
             break
+        print(tape)
     print(f"End State reached.\nResult: {''.join(tape)}")
 
 
