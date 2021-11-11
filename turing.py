@@ -14,11 +14,11 @@ def main():
     import pandas as pd
 
     # Enter spreadsheet name E.g. "Multiplication", "Invert" or "Addition"
-    instructions = "Invert"
+    instructions = "Addition"
     df = pd.read_excel('instructions.xlsx', header=0,
                     sheet_name=instructions).astype("string")
 
-    tape = list("#11101#")
+    tape = list("#1#")
     run_machine(df, tape)
 
 
@@ -35,7 +35,7 @@ def run_machine(df, tape):
             index += 1
         elif move == "l":
             index -= 1
-        elif move == "stop" or state == "error":
+        elif move == "stop":
             run = False
             break
     print(f"End State reached.\nResult: {''.join(tape)}")
