@@ -14,11 +14,11 @@ def main():
     import pandas as pd
 
     # Enter spreadsheet name E.g. "Multiplication", "Invert" or "Addition"
-    instructions = "Multiplication"
+    instructions = "Invert"
     df = pd.read_excel('instructions.xlsx', header=0,
                     sheet_name=instructions).astype("string")
 
-    tape = list("#1#")
+    tape = list("#110101#")
     run_machine(df, tape)
 
 
@@ -39,7 +39,7 @@ def run_machine(df, tape):
             if index == 0:
                 tape.insert(0, "#")
             index -= 1
-        elif move == "stop":
+        else:
             run = False
             break
         print(tape)
